@@ -2,9 +2,9 @@
 /shelf/
 /workspace.xml
 # User-specific files
-bfore-ai-cli-linux
-bfore-ai-cli-macos-arm64
-bfore-ai-cli.exe
+/bfore-ai-cli-linux
+/bfore-ai-cli-macos-arm64
+/bfore-ai-cli.exe
 # Editor-based HTTP Client requests
 /httpRequests/
 # Datasource local storage ignored files
