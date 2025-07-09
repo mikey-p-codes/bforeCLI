@@ -31,8 +31,8 @@ A powerful, interactive command-line interface (CLI) built with Go for interacti
 
 1.  **Clone the repository:**
     ```bash
-    git clone <your-repo-url>
-    cd go-cli-tool
+    git clone https://github.com/mikey-p-codes/bforeCLI.git
+    cd bforeCLI
     ```
 
 2.  **Install dependencies:**
@@ -44,17 +44,17 @@ A powerful, interactive command-line interface (CLI) built with Go for interacti
 3.  **Build the application:**
     For the best experience (especially for the `clear` command and progress bar to work correctly), build the executable first.
     ```bash
-    go build -o go-cli-app .
+    go build -o bfore-ai-cli .
     ```
 
 4.  **Run the application:**
     Execute the compiled binary from your terminal.
-    * On macOS/Linux: `./bfore-ai-cli-[linux/mac]`
+    * On macOS/Linux: `./bfore-ai-cli`
     * On Windows: `.\bfore-ai-cli.exe`
 
 ## Usage
 
-Once the application is running, you will be greeted by the ASCII banner and the `>>>` prompt. Type `help` to see a list of available commands.
+Once the application is running, you will be greeted by the ASCII banner and the `$` prompt. Type `help` to see a list of available commands.
 
 ### Commands
 
@@ -79,41 +79,4 @@ Once the application is running, you will be greeted by the ASCII banner and the
 
 * `exit`
   Exits the CLI application.
-
-## Building for Releases
-
-You can easily cross-compile this application for different operating systems to host in the "Releases" section of your GitHub repository.
-
-### From a Linux/macOS Terminal (bash, zsh)
-
-* **For Windows (64-bit):**
-    ```bash
-    GOOS=windows GOARCH=amd64 go build -o bfore-ai-cli.exe .
-    ```
-
-* **For macOS (Apple Silicon):**
-    ```bash
-    GOOS=darwin GOARCH=arm64 go build -o bfore-ai-cli-macos-arm64 .
-    ```
-
-* **For macOS (Intel):**
-    ```bash
-    GOOS=darwin GOARCH=amd64 go build -o bfore-ai-cli-macos-amd64 .
-    ```
-
-* **For Linux (64-bit):**
-    ```bash
-    GOOS=linux GOARCH=amd64 go build -o bfore-ai-cli-linux .
-    ```
-
-### From a Windows Terminal (PowerShell)
-
-* **For Windows (64-bit):**
-    ```powershell
-    $env:GOOS="windows"; $env:GOARCH="amd64"; go build -o bfore-ai-cli.exe .
-    ```
-
-* **For Linux (64-bit):**
-    ```powershell
-    $env:GOOS="linux"; $env:GOARCH="amd64"; go build -o bfore-ai-cli-linux .
-    
+   
