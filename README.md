@@ -11,18 +11,18 @@ A powerful, interactive command-line interface (CLI) built with Go for interacti
 ## Features
 
 * **Interactive Shell**: A user-friendly shell environment powered by `go-prompt`, complete with command history and a dynamic prompt.
-[interactive-shell](/img/bforecli1.png)
+![interactive-shell](/img/bforecli1.png)
 * **Secure Authentication**: `login` and `logout` commands to manage session tokens for accessing protected API endpoints.
-[login](/img/interactive-prompt.png)
+![login](/img/interactive-prompt.png)
 * **Dynamic Prompt**: The command prompt changes to show the currently logged-in user (e.g., `dave@go-cli $`).
 * **Concurrent Data Fetching**: The `generate-sample` command uses goroutines and channels to efficiently fetch large amounts of data from the API in concurrent, time-based chunks, preventing timeouts.
 * **Real-time Progress Bar**: Visual feedback for long-running operations using a progress bar.
-[progress](/img/progress-bar.png)
+![progress](/img/progress-bar.png)
 * **Context-Aware Autocompletion**: Smart command suggestions that offer filenames when using the `read` command.
 * **Flexible Output**: Save API results as pretty-printed JSON, CSV, or both.
-[save](/img/save-output.png)
+![save](/img/save-output.png)
 * **Built-in File Viewer**: Use the `read` command to view the contents of saved `.json` and `.csv` files without leaving the application.
-[readfiles](/img/read-files.png)
+![readfiles](/img/read-files.png)
 
 ## Getting Started
 
