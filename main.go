@@ -15,6 +15,7 @@ import (
 	"path/filepath"
 	"runtime"
 	"sort"
+	"strconv"
 	"strings"
 	"sync"
 	"time"
@@ -591,6 +592,7 @@ func printDomainsToScreen(domains []Domains) {
 }
 
 // saveDomains handles the logic for saving domain results to a file.
+// saveDomains handles the logic for saving domain results to a file.
 func saveDomains(domains []Domains) {
 	filenameBase := prompt.Input("Enter base filename for output (e.g., domain_data): ", completer)
 	format := prompt.Input("Choose output format (json, csv, both): ", completer)
@@ -613,7 +615,33 @@ func saveDomains(domains []Domains) {
 	}
 
 	if format == "csv" || format == "both" {
-		// ... (rest of the function remains the same)
+		filename := filenameBase + ".csv"
+		file, err := os.Create(filename)
+		if err != nil {
+			fmt.Println("Error creating CSV file:", err)
+			return
+		}
+		defer file.Close()
+
+		writer := csv.NewWriter(file)
+		defer writer.Flush()
+
+		// Write header row
+		header := []string{"ID", "Name", "Score", "Created"}
+		writer.Write(header)
+
+		// Write data rows
+		for _, d := range domains {
+			row := []string{
+				fmt.Sprintf("%d", d.Id),
+				d.Name,
+				// Use strconv.FormatFloat to preserve precision
+				strconv.FormatFloat(d.Score, 'f', -1, 64),
+				d.DomainCreated,
+			}
+			writer.Write(row)
+		}
+		fmt.Println("Successfully saved data to", filename)
 	}
 }
 func handleLogoutCmd(args []string) {
