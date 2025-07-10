@@ -2,7 +2,6 @@
 package main
 
 import (
-	"bufio"
 	"bytes"
 	"encoding/csv"
 	"encoding/json"
@@ -402,8 +401,8 @@ func handleDomainInfoCmd(args []string) {
 	if len(allRecords) == 0 {
 		return
 	}
-	fmt.Print("Would you like to save the results? (Y/n): ")
-	saveResult, _ := reader.ReadString('\n')
+
+	saveResult := prompt.Input("Would you like to save the results? (Y/n): ", completer)
 	saveResult = strings.ToLower(strings.TrimSpace(saveResult))
 
 	// If user enters 'n', print to screen and stop. Otherwise, proceed to save.
@@ -413,12 +412,12 @@ func handleDomainInfoCmd(args []string) {
 	}
 
 	// file saving logic
-	fmt.Print("Enter base filename for output (e.g., domain_data): ")
-	filenameBase, _ := reader.ReadString('\n')
+
+	filenameBase := prompt.Input("Enter base filename for output (e.g., domain_data): ", completer)
 	filenameBase = strings.TrimSpace(filenameBase)
 
 	fmt.Print("Choose output format (json, csv, both): ")
-	format, _ := reader.ReadString('\n')
+	format := prompt.Input("Choose output format (json, csv, both): ", completer)
 	format = strings.ToLower(strings.TrimSpace(format))
 
 	if format == "json" || format == "both" {
@@ -478,29 +477,18 @@ func handleGenerateSampleCmd(args []string) {
 		return
 	}
 
-	reader := bufio.NewReader(os.Stdin)
-	const iso8601Format = "2006-01-02T15:04:00" // Use Z for UTC as is standard
+	const iso8601Format = "2006-01-02T15:04:00"
 
-	fmt.Print("How many records per request would you like to see?: ")
-	records, _ := reader.ReadString('\n')
-	records = strings.TrimSpace(records)
-
-	fmt.Print("What is the minimum score you'd like to see?: ")
-	minScore, _ := reader.ReadString('\n')
-	minScore = strings.TrimSpace(minScore)
-
-	fmt.Printf("Enter start time (YYYY-MM-DDTHH:MM:SS): ")
-	startStr, _ := reader.ReadString('\n')
-	startStr = strings.TrimSpace(startStr)
+	records := prompt.Input("How many records per request would you like to see?: ", completer)
+	minScore := prompt.Input("What is the minimum score you'd like to see?: ", completer)
+	startStr := prompt.Input("Enter start time (YYYY-MM-DDTHH:MM:SS): ", completer)
 	startTime, err := time.Parse(iso8601Format, startStr)
 	if err != nil {
 		fmt.Println("Invalid start time format. Please use YYYY-MM-DDTHH:MM:SS")
 		return
 	}
 
-	fmt.Printf("Enter end time (YYYY-MM-DDTHH:MM:SS): ")
-	endStr, _ := reader.ReadString('\n')
-	endStr = strings.TrimSpace(endStr)
+	endStr := prompt.Input("Enter end time (YYYY-MM-DDTHH:MM:SS): ", completer)
 	endTime, err := time.Parse(iso8601Format, endStr)
 	if err != nil {
 		fmt.Println("Invalid end time format. Please use YYYY-MM-DDTHH:MM:SS")
@@ -578,8 +566,7 @@ func handleGenerateSampleCmd(args []string) {
 	fmt.Println("All domains Sorted by Score Creation Date.")
 
 	// Ask to save or print the final results.
-	fmt.Print("Would you like to save the results? (Y/n): ")
-	saveResult, _ := reader.ReadString('\n')
+	saveResult := prompt.Input("Would you like to save the results? (Y/n): ", completer)
 	saveResult = strings.ToLower(strings.TrimSpace(saveResult))
 
 	if saveResult == "n" {
