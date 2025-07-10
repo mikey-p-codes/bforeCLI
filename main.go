@@ -230,13 +230,8 @@ func handleReadCmd(args []string) {
 
 // handleLoginCmd is our new login logic, now as a command
 func handleLoginCmd(args []string) {
-	reader := bufio.NewReader(os.Stdin)
-
-	fmt.Print("Enter username: ")
-	username, _ := reader.ReadString('\n')
-
-	fmt.Print("Enter password: ")
-	password, _ := reader.ReadString('\n')
+	username := prompt.Input("Enter username: ", completer)
+	password := prompt.Input("Enter password: ", completer, prompt.OptionPrefixTextColor(prompt.Red))
 
 	// same login logic previously
 	loginData := struct {
@@ -300,6 +295,7 @@ func handleLoginCmd(args []string) {
 	apiUser = loginResponse.Username
 	fmt.Println("\nSuccessfully authenticated! Token has been stored for this session.")
 }
+
 func handleshowcmd(args []string) {
 	fmt.Printf("Current User Information: %s\n", apiUser)
 	fmt.Printf("Current Token: 			 %s\n", apiToken)
